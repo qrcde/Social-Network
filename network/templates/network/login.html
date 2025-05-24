@@ -1,0 +1,26 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div style="display: flex; justify-content: center; align-items: start; min-height: 100vh;">
+    <div style="width: 100%; max-width: 400px; text-align: center;">
+        <h2>Login</h2>
+        <br>
+        {% if message %}
+            <div>{{ message }}</div>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Login" style="margin-bottom: 10px; width: 100%;">
+        </form>
+
+        Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+    </div>
+</div>
+{% endblock %}

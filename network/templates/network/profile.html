@@ -1,0 +1,58 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+{% if not_found %}
+<div class="alert alert-warning" style="text-align: center;">
+    <h4>{{ error }}</h4>
+    <p>The user you're looking for doesn't exist.</p>
+</div>
+{% else %}
+    <div id="profile-container" data-user-id="{{ p_user.id }}"
+    class="text-center flex flex-col items-center justify-center mt-5">
+        {% csrf_token %}
+        <!--Display profile owner's username-->
+        <h2 id="username">{{ p_user.username }}</h2> 
+        <p>
+            <!--Display the number of profile owner's followers-->
+            Followers:
+            <!--Add link to follower list page if > 0 followers-->
+            {% if p_user.followers.count > 0 %}
+                <a href="{% url 'follow_page' p_user.id 'followers' %}">
+                    <span id="followers-count">{{ p_user.followers.count }}</span>
+                </a>
+            {% else %}
+                <span id="followers-count">{{ p_user.followers.count }}</span>
+            {% endif %}
+        </p>
+       
+        <p>
+            <!--Display the number of users profile owner follows -->
+            Following:
+            <!--Add link to following list page if following > 0-->
+            {% if p_user.following.count > 0 %}
+                <a href="{% url 'follow_page' p_user.id 'following' %}">
+                    <span id="following-count">{{ p_user.following.count }}</span>
+                </a>
+            {% else %}
+                <span id="following-count">{{ p_user.following.count }}</span>
+            {% endif %}
+        </p>
+        
+        <!--Follow/ Unfollow button:-->
+        {% if user.is_authenticated and user.id != p_user.id %}
+            <button id="follow-btn" class="btn btn-primary" data-user-id="{{ p_user.id }}">
+                {% if is_following %}Unfollow{% else %}Follow{% endif %}
+            </button>
+        {% endif %}
+       
+        <!--Display profile owner's posts:-->
+        <div id="posts-view" class="w-full flex flex-col items-center">
+            <h3>Posts</h3>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    <script type="module" src="{% static 'network/profile.js' %}"></script>
+{% endblock %}
