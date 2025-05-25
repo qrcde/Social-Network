@@ -1,5 +1,5 @@
 # Social Network
-A full-stack social networking application built with Django and JavaScript, inspired by platforms like Threads and Twitter. 
+A full-stack microblogging application built with Django and JavaScript, inspired by platforms like Threads and Twitter. 
 Users can create posts, follow others, like and edit posts, and explore content through dynamic, paginated feeds. <br>
 The project demonstrates full-stack web development using Django, JavaScript, and RESTful design principles, including user authentication, asynchronous updates, and dynamic UI rendering.
 
