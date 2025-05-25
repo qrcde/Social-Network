@@ -20,7 +20,7 @@ Follow/unfollow functionality
 
 **Interactivity:**  
 Like/unlike posts  
-Edit posts in-place via JavaScript
+Edit posts 
 
 **Pagination:**  
 10 posts per page
